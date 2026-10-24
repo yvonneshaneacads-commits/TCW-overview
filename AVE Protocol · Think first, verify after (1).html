@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AVE Protocol · Think first, verify after</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&display=swap">
+<style>
+:root{--bg:#141c33;--bg2:#1b2542;--ink:#cfd9f5;--dim:#9aa8d0;--line:#34416b;--hi:#e8eeff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.65 'EB Garamond',Georgia,serif;overflow-x:hidden}
+h1,h2,h3{font-family:'IM Fell English','EB Garamond',Georgia,serif;font-weight:400;color:var(--hi);line-height:1.15}
+.sc{font-family:'IM Fell English SC','EB Garamond',serif;letter-spacing:.05em}
+section{max-width:1000px;margin:0 auto;padding:72px 22px;position:relative}
+h2{font-size:clamp(30px,5vw,44px);margin:.1em 0 .4em;text-align:center}
+.kicker{text-align:center;color:var(--dim);font-size:16px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#141c33ee;backdrop-filter:blur(6px);border-bottom:1px solid var(--line);display:flex;gap:6px 18px;justify-content:center;flex-wrap:wrap;padding:10px 12px;font-size:15px}
+nav a{color:var(--ink);text-decoration:none;opacity:.8}nav a:hover{opacity:1;color:#fff}
+.hero{text-align:center;padding-top:40px;min-height:88vh}
+.top{display:flex;justify-content:space-between;gap:12px;font-size:14px;text-align:left;color:var(--ink);flex-wrap:wrap}.top div:last-child{text-align:right}
+.hero h1{font-size:clamp(90px,22vw,190px);margin:.05em 0 0;font-style:italic;transform:rotate(-3deg);text-shadow:3px 3px 0 #0b1226}
+.hero h1+div{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(34px,7vw,56px);margin-top:-.4em;color:var(--hi)}
+.hero p{max-width:560px;margin:22px auto}
+.cast{display:flex;justify-content:center;align-items:flex-end;gap:18px;margin-top:10px}
+.btn{display:inline-block;border:1px solid var(--ink);color:var(--hi);padding:9px 22px;border-radius:99px;text-decoration:none;margin:6px;font-size:17px;background:transparent;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--ink);color:var(--bg)}
+svg.m{display:block;overflow:visible}
+.fox{width:96px;animation:fl 4s ease-in-out infinite}.owl{width:70px;animation:fl 3.2s ease-in-out infinite .6s}
+.scene{width:min(430px,94%);margin:6px auto 0;display:block;overflow:visible;color:var(--ink)}
+.bob{transform-box:fill-box;transform-origin:center;animation:fl 4.5s ease-in-out infinite}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sw 4s ease-in-out infinite}
+@keyframes sw{50%{transform:rotate(8deg)}}
+.flow{stroke-dasharray:7 9;animation:fw 3s linear infinite}@keyframes fw{to{stroke-dashoffset:-64}}
+.bow{transform-box:fill-box;transform-origin:center;animation:bw 3s ease-in-out infinite}@keyframes bw{50%{transform:rotate(-7deg) scale(1.06)}}
+.twk{transform-box:fill-box;transform-origin:center;animation:tw 2.6s ease-in-out infinite}.twk.b{animation-delay:1.1s}.twk.c{animation-delay:1.9s}
+.sp{position:absolute;font-style:normal;color:var(--hi);font-size:24px;animation:tw 2.6s ease-in-out infinite}
+.zz{position:absolute;font-style:italic;font-family:'IM Fell English',serif;font-size:26px;color:var(--hi);right:12%;top:0;opacity:0;animation:zz 3.6s infinite}
+.zz+.zz{animation-delay:1.8s}
+@keyframes zz{0%{opacity:0;transform:translate(0,10px) scale(.6)}30%{opacity:1}100%{opacity:0;transform:translate(18px,-44px) scale(1.2)}}
+@keyframes br{50%{transform:scale(1.035)}}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+#sky i{position:absolute;width:3px;height:3px;border-radius:50%;background:#cfd9f5;animation:tw 4s infinite}
+.shoot{position:fixed;top:12%;left:-10%;width:90px;height:2px;background:linear-gradient(90deg,transparent,#fff);animation:sh 9s infinite;opacity:0;z-index:0;pointer-events:none}
+@keyframes sh{0%{opacity:0;transform:translate(0,0) rotate(25deg)}3%{opacity:1}12%{opacity:0;transform:translate(70vw,32vw) rotate(25deg)}100%{opacity:0}}
+.card,.sol,.phase{border-radius:24px}.card{transition:translate .25s}.card:hover{translate:0 -5px}
+.card h3:before{content:"\2726 ";font-size:.6em;vertical-align:.25em;color:var(--dim)}
+#mus{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9;font:inherit;font-size:15px;color:var(--hi);background:var(--bg2);border:1.5px solid var(--ink);border-radius:99px;padding:8px 16px;cursor:pointer}
+.moon{position:absolute;right:9%;top:120px;width:46px;animation:fl 5s infinite}
+
+@keyframes fl{50%{transform:translateY(-9px) rotate(-1.5deg)}}
+.bl{transform-box:fill-box;transform-origin:center;animation:bk 5s infinite}
+@keyframes bk{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.tw{animation:tw 3s ease-in-out infinite}.tw:nth-child(2n){animation-delay:1.2s}
+@keyframes tw{50%{opacity:.25;transform:scale(.7)}}
+.star{position:absolute;width:44px;color:var(--ink);transform-box:fill-box;transform-origin:center}
+.say{display:flex;gap:18px;align-items:flex-end;margin:26px 0}
+.say.r{flex-direction:row-reverse}
+.bub{background:var(--bg2);border:1.5px solid var(--ink);border-radius:20px;padding:14px 18px;position:relative;flex:1}
+.bub:before{content:"";position:absolute;bottom:18px;left:-11px;width:18px;height:18px;background:var(--bg2);border-left:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg)}
+.r .bub:before{left:auto;right:-11px;transform:rotate(-135deg)}
+.bub b{color:var(--hi)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:18px}
+.card{border:1px solid var(--line);background:var(--bg2);border-radius:16px;padding:18px}
+.card h3{margin:0 0 6px;font-size:23px}.card ul{margin:0;padding-left:20px}.card p{margin:0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0}
+.tab{font:inherit;font-size:16px;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:99px;padding:6px 14px;cursor:pointer}
+.tab[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.phase{border:1.5px solid var(--ink);border-radius:20px;padding:22px;background:var(--bg2)}
+.phase h3{font-size:30px;margin:0}.phase .tag{color:var(--dim)}
+.rank{display:grid;gap:14px}
+.sol{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--bg2)}
+.sol.win{border:2px solid var(--ink)}
+.sol h3{margin:0 0 4px;font-size:24px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:17px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:center}th{background:var(--bg2);color:var(--hi);font-weight:600}td:first-child{text-align:left}
+.H{color:#bff0d0}.M{color:#f3e2a6}.L{color:#f2b5b5}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{counter-increment:s;padding:14px 16px 14px 56px;position:relative;border:1px solid var(--line);border-radius:14px;background:var(--bg2)}
+.steps li:before{content:counter(s);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ink);text-align:center;line-height:27px;font-family:'IM Fell English',serif}
+.refs{font-size:16px;padding-left:20px}.refs li{margin-bottom:8px}.refs a{color:var(--ink)}
+footer{text-align:center;padding:40px 20px 60px;color:var(--dim)}
+.js .rv{opacity:0;transform:translateY(22px);transition:.7s}.js .rv.in{opacity:1;transform:none}
+@media(max-width:640px){body{font-size:17px}.say{flex-direction:column;align-items:flex-start}.say.r{flex-direction:column;align-items:flex-end}.bub:before{display:none}.top{font-size:12px}section{padding:52px 18px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body><div id="sky"></div><div class="shoot"></div><button id="mus">♪ Play calm music</button>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="fox" viewBox="0 0 130 150"><path d="M14 8 L50 42 Q65 36 80 42 L116 8 L114 68 L65 122 L16 68Z" fill="#cfd9f5"/><path d="M22 18 L42 40 L24 52Z M108 18 L88 40 L106 52Z" fill="#141c33" opacity=".3"/><path d="M40 92 L65 122 L90 92 Q65 106 40 92Z" fill="#141c33" opacity=".85"/><g class="bl" stroke="#141c33" stroke-width="3" fill="none" stroke-linecap="round"><path d="M34 68q9 8 19 0"/><path d="M77 68q9 8 19 0"/></g><circle cx="65" cy="121" r="3" fill="#141c33"/><g class="bow" stroke="#cfd9f5" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M65 134c-15-10-26-2-26 5s11 10 26-5zM65 134c15-10 26-2 26 5s-11 10-26-5z"/><circle cx="65" cy="134" r="3" fill="#cfd9f5"/><path d="M62 142l-5 10M68 142l5 10M65 143v9"/></g></symbol>
+<symbol id="owl" viewBox="0 0 100 110"><g fill="#cfd9f5"><path d="M18 8 L38 24 L18 38Z M82 8 L62 24 L82 38Z"/><ellipse cx="50" cy="64" rx="33" ry="40"/></g>
+<g class="bl"><circle cx="35" cy="52" r="14" fill="#141c33"/><circle cx="65" cy="52" r="14" fill="#141c33"/><circle cx="35" cy="52" r="8" fill="#cfd9f5"/><circle cx="65" cy="52" r="8" fill="#cfd9f5"/><circle cx="35" cy="53" r="4" fill="#141c33"/><circle cx="65" cy="53" r="4" fill="#141c33"/></g>
+<path d="M45 64 L50 72 L55 64Z" fill="#141c33"/>
+<path d="M30 86q5 5 10 0t10 0 10 0 10 0" stroke="#141c33" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M14 104h72" stroke="#cfd9f5" stroke-width="3" stroke-linecap="round"/></symbol>
+<symbol id="star" viewBox="0 0 40 40"><path d="M20 2 L24 16 L38 20 L24 24 L20 38 L16 24 L2 20 L16 16Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="20" cy="20" r="3" fill="currentColor"/></symbol>
+</defs></svg>
+
+<nav class="sc"><a href="#creator">Creator</a><a href="#issue">The Issue</a><a href="#ave">AVE Protocol</a><a href="#why">Why it works</a><a href="#alts">Alternatives</a><a href="#measure">Success</a><a href="#plan">Plan</a><a href="#refs">References</a></nav>
+
+<section class="hero">
+  <svg class="star tw" style="left:6%;top:150px"><use href="#star"/></svg>
+  <svg class="star tw" style="right:8%;top:130px;width:30px"><use href="#star"/></svg>
+  <svg class="moon" viewBox="0 0 40 40"><path d="M28 4a17 17 0 1 0 8 26A14 14 0 0 1 28 4z" fill="#cfd9f5"/></svg><div class="top sc"><div>Autonomous Verification Engine<br>A personal operating system for AI work</div><div>Think first, verify after<br>Explain it, defend it, own it</div></div>
+  <h1>AVE</h1><div>Protocol</div>
+  <p>Hired by Humans: how students and fresh graduates in the Philippines can use AI without losing their own thinking. Six phases, six personas, one habit: <i>think first.</i></p>
+  <a class="btn" href="#ave">Meet the protocol</a><a class="btn" href="https://yvonneshaneacads-commits.github.io/AVE-update/" target="_blank" rel="noopener">Try the live tool</a>
+  <div class="cast"><svg class="scene" viewBox="0 0 400 300" role="img" aria-label="A sleepy fox and a little owl: Think first.">
+<g class="flow" stroke="#cfd9f5" stroke-width="3" fill="none" stroke-linecap="round"><path d="M285 30q15-14 30 0t30 0t30 0"/><path d="M280 46q15-14 30 0t30 0t30 0"/><path d="M290 62q15-14 30 0t30 0"/></g>
+<g class="twk" stroke="#cfd9f5" stroke-width="2.5" stroke-linecap="round"><path d="M108 112l-16-5M104 126l-16 2M292 112l16-5M296 126l16 2"/></g>
+<g class="bob"><use href="#fox" x="125" y="34" width="150" height="173"/></g>
+<g class="bob" style="animation-delay:.6s"><use href="#owl" x="38" y="188" width="76" height="84"/></g>
+<g class="sway"><path d="M338 112Q352 170 322 232" stroke="#cfd9f5" stroke-width="3" fill="none" stroke-linecap="round"/><g fill="#cfd9f5"><ellipse cx="346" cy="128" rx="5" ry="12" transform="rotate(35 346 128)"/><ellipse cx="332" cy="146" rx="5" ry="12" transform="rotate(-30 332 146)"/><ellipse cx="347" cy="166" rx="5" ry="12" transform="rotate(38 347 166)"/><ellipse cx="330" cy="184" rx="5" ry="12" transform="rotate(-34 330 184)"/><ellipse cx="342" cy="202" rx="5" ry="12" transform="rotate(35 342 202)"/><ellipse cx="322" cy="216" rx="5" ry="12" transform="rotate(-30 322 216)"/></g></g>
+<use class="twk " href="#star" x="28" y="66" width="26" height="26"/><use class="twk b" href="#star" x="70" y="140" width="14" height="14"/><use class="twk c" href="#star" x="150" y="232" width="38" height="38"/><use class="twk b" href="#star" x="300" y="204" width="22" height="22"/><use class="twk c" href="#star" x="250" y="16" width="16" height="16"/>
+<text x="205" y="284" fill="#cfd9f5" font-family="'IM Fell English',Georgia,serif" font-style="italic" font-size="24">Think first.</text></svg></div>
+  
+</section>
+
+<section id="creator" style="text-align:center"><div class="kicker sc rv">Before we begin</div><h2 class="rv">Created by Yvonne Shane Lu</h2>
+<div class="rv" style="position:relative;width:150px;margin:0 auto"><svg class="m fox" style="width:150px" viewBox="0 0 130 150"><use href="#fox"/></svg><i class="zz">z</i><i class="zz">Z</i></div>
+<div class="say rv" style="max-width:640px;margin:26px auto;text-align:left"><svg class="m fox" viewBox="0 0 130 150"><use href="#fox"/></svg><div class="bub">Hi, we are the fox and the owl! AVE Protocol is Yvonne's answer to a simple worry: AI is getting good at the easy parts of work, so how do you keep your own thinking sharp? We will be your guides. <span class="sc">✦ Let's think first.</span></div></div></section>
+<section id="issue">
+  <div class="kicker sc rv">Part One</div><h2 class="rv">Understanding the Issue</h2>
+  <div class="say rv"><svg class="m fox" viewBox="0 0 130 150"><use href="#fox"/></svg><div class="bub"><b>The issue:</b> AI automation is eating entry-level work. Under the driver of <b>Technology</b>, generative AI now handles the routine admin, analysis and data-entry tasks that used to be a graduate's first rung on the career ladder.</div></div>
+  <div class="say r rv"><svg class="m owl" viewBox="0 0 100 110"><use href="#owl"/></svg><div class="bub"><b>Why it matters:</b> In the Philippines, the IT-BPM sector is a pillar of middle-class growth. If junior tasks vanish, young workers lose the chance to build skills <i>before</i> they are expected to have them.</div></div>
+  <div class="cards">
+    <div class="card rv"><h3>Main Causes</h3><p>Corporate drive to cut costs and move faster, plus enterprise software that can draft content, write code and process data.</p></div>
+    <div class="card rv"><h3>Main Effects</h3><ul><li>Fewer openings for fresh graduates</li><li>Junior roles asking for mid-level skill</li><li>A fragmented career ladder</li><li>Cognitive deskilling from passive AI reliance</li></ul></div>
+    <div class="card rv"><h3>Stakeholders</h3><ul><li><b>Students and graduates:</b> career anxiety</li><li><b>Employers (IBPAP):</b> efficiency, analytical talent</li><li><b>Government:</b> DOLE, DICT, TESDA, CHED</li><li><b>Office workers:</b> displacement, wage stagnation</li></ul></div>
+  </div>
+</section>
+
+<section id="ave">
+  <svg class="star tw" style="right:5%;top:60px;width:30px"><use href="#star"/></svg>
+  <div class="kicker sc rv">Part Two · The Proposed Solution</div><h2 class="rv">The AVE Protocol</h2>
+  <p class="kicker rv" style="max-width:640px;margin:0 auto">An agency-preserving system of AI personas that turns a chatbot from a shortcut into a sparring partner. Tap a phase to hear from our guides.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="say" id="say"><svg class="m fox" id="who" viewBox="0 0 130 150"><use href="#fox"/></svg><div class="bub" id="line"></div></div>
+  <div class="phase" id="ph"></div>
+  <div class="cards">
+    <div class="card rv"><h3>Why start with you?</h3><p>The Tutor withholds answers on purpose. You reason first, then the AI helps, so your thinking stays yours.</p></div>
+    <div class="card rv"><h3>Time-flexible</h3><p>Phases can shrink for a 15-minute quick draft or grow for a 2-hour deep analysis. Squeeze the time, never skip the step.</p></div>
+    <div class="card rv"><h3>What the site keeps</h3><p>Your timer, prompts, notes and scores. The AI chat itself happens in the tool you already use.</p></div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="kicker sc rv">Part Two</div><h2 class="rv">Why It Works</h2>
+  <div class="say rv"><svg class="m owl" viewBox="0 0 100 110"><use href="#owl"/></svg><div class="bub">AVE attacks the roots of AI deskilling: <b>automation bias</b> and <b>cognitive offloading</b>. You supply the first reasoning in the Tutor phase and defend the result in the Closing Mentor phase.</div></div>
+  <div class="say r rv"><svg class="m fox" viewBox="0 0 130 150"><use href="#fox"/></svg><div class="bub">That makes you a competent <b>AI operator</b>: someone who can audit and defend their work under questioning. That is exactly the gap employers say fresh graduates have.</div></div>
+  <h3 class="rv" style="text-align:center;margin-top:36px">Real-world use</h3>
+  <p class="rv" style="text-align:center;max-width:680px;margin:0 auto">It needs no funding, legislation or approval. A student, freelancer or junior analyst can use it today in any AI chat: defend assumptions before text is generated, receive a critique, then do a screen-off summary before submitting to a supervisor.</p>
+</section>
+
+<section id="alts">
+  <div class="kicker sc rv">Part Three</div><h2 class="rv">Alternatives We Weighed</h2>
+  <div class="rank">
+    <div class="sol win rv"><h3>1st · AVE Protocol <span class="tag sc" style="font-size:15px">micro level</span></h3>Fastest to adopt, near-zero cost, skills transfer across tools. Rated Medium on evidence only because it has not yet been tested on a live student cohort.</div>
+    <div class="sol rv"><h3>2nd · Tri-Sector Apprenticeship <span class="tag sc" style="font-size:15px">meso level</span></h3>Industry, universities and government turn entry-level jobs into paid Junior AI Operator apprenticeships. Valuable, but it depends on multi-institution coordination and risks widening the Metro Manila vs. provincial gap.</div>
+    <div class="sol rv"><h3>3rd · Due Process Safeguards <span class="tag sc" style="font-size:15px">macro level</span></h3>HB 9448, Article 298 of the Labor Code and RA 11927 for human oversight and retraining. Legally grounded, but slow, and hard to enforce on foreign remote employers.</div>
+  </div>
+  <h3 class="rv" style="text-align:center;margin-top:34px">Comparative Ratings</h3>
+  <div class="wrap rv"><table>
+    <tr><th></th><th>AVE</th><th>Apprenticeship</th><th>Due Process</th></tr>
+    <tr><td>Compliance and effectiveness</td><td class="M">Medium</td><td class="M">Medium</td><td class="M">Medium</td></tr>
+    <tr><td>Empirical evidence</td><td class="M">Medium</td><td class="M">Medium</td><td class="L">Low</td></tr>
+    <tr><td>Stakeholder satisfaction</td><td class="H">High</td><td class="M">Medium</td><td class="M">Medium</td></tr>
+    <tr><td>Sustainability</td><td class="H">High</td><td class="M">Medium</td><td class="L">Low</td></tr>
+    <tr><td>Scalability</td><td class="H">High</td><td class="M">Medium</td><td class="L">Low</td></tr>
+  </table></div>
+  <p class="rv" style="font-size:16px;color:var(--dim)">Supporting evidence: Roediger and Karpicke (2006) found 61% retention after a week with retrieval practice versus 40% from restudying. Lee et al. (2025) link higher AI confidence to reduced critical thinking.</p>
+</section>
+
+<section id="measure">
+  <div class="kicker sc rv">Part Four</div><h2 class="rv">Measuring Success</h2>
+  <div class="cards">
+    <div class="card rv"><h3>Specific</h3><p>No unverified factual errors, with an auditable verification log for every assignment.</p></div>
+    <div class="card rv"><h3>Measurable</h3><p>100% completion of the closing Feynman explain-back, tracked in audit logs.</p></div>
+    <div class="card rv"><h3>Achievable</h3><p>Phase time budgets flex from 15-minute drafts to 2-hour deep dives.</p></div>
+    <div class="card rv"><h3>Relevant</h3><p>Targets the readiness gap: 37% of hiring managers report reduced entry-level hiring due to weak critical thinking.</p></div>
+    <div class="card rv"><h3>Time-bound</h3><p>Start now; evaluate improvement over 3 to 6 months.</p></div>
+  </div>
+  <div class="say rv"><svg class="m owl" viewBox="0 0 100 110"><use href="#owl"/></svg><div class="bub"><b>Expected outcomes:</b> fewer low-effort AI errors, more confidence in oral presentations and structured prompting. Long term, you keep domain literacy <i>and</i> digital productivity. For lasting impact, prompts stay updated across AI models and verification logs can join your digital portfolio as proof of problem-solving.</div></div>
+</section>
+
+<section id="plan">
+  <div class="kicker sc rv">Part Five</div><h2 class="rv">Plan and Implementation</h2>
+  <ol class="steps rv">
+    <li><b>Finalize the prompts.</b> Write and test all six persona prompts so each stage stays consistent.</li>
+    <li><b>Build the web app.</b> Host the persona sequence with built-in timers.</li>
+    <li><b>Test on real work.</b> Run the full protocol on coursework and deliverables to find friction.</li>
+    <li><b>Sync your notes.</b> Export verified notes, chats and audit logs to Notion or Google Docs.</li>
+  </ol>
+  <p class="rv">Ownership sits with the individual user and developer; student early adopters give feedback. No legal change, public budget or approval is needed. The main resource is the effort to build, host and maintain the app.</p>
+  <h3 class="rv" style="text-align:center">If something goes wrong</h3>
+  <div class="cards">
+    <div class="card rv"><h3>Persona drift</h3><p>Tighten the prompt's role boundaries.</p></div>
+    <div class="card rv"><h3>Build delays</h3><p>Run the protocol manually in any chat window.</p></div>
+    <div class="card rv"><h3>Rigid timing</h3><p>Adjust phase durations by hand.</p></div>
+    <div class="card rv"><h3>Deadline pressure</h3><p>Compress each phase; never skip one.</p></div>
+    <div class="card rv"><h3>Automation bias</h3><p>The Feynman explain-back is the final fail-safe.</p></div>
+  </div>
+</section>
+
+<section id="refs">
+  <div class="kicker sc rv">Part Six</div><h2 class="rv">Presenting and References</h2>
+  <p class="rv" style="text-align:center;max-width:680px;margin:0 auto 24px">Built as an interactive digital article for college students, fresh graduates and early-career workers, with administrators, faculty and policy makers as a secondary audience.</p>
+  <ol class="refs rv">
+    <li>Commission on Higher Education. (2025). <i>Memorandum Order No. 01, Series of 2025: Policies and Guidelines on the Implementation of Micro-Credentials in Higher Education.</i> CHED.</li>
+    <li>Commission on Higher Education. (2026). <i>Memorandum Order No. 21, Series of 2026: Framework for Human-Centered Artificial Intelligence Integration in Higher Education Curricula.</i> CHED. <a href="https://cms-cdn.e.gov.ph/CHED/pdf/2026-CMO-21_AI-in-Higher-Education.pdf" target="_blank" rel="noopener">Link</a></li>
+    <li>Congress of the Philippines. (2024). <i>House Bill No. 9448: An Act Regulating the Use of Artificial Intelligence Systems in the Workplace and Protecting Workers Rights to Due Process.</i></li>
+    <li>European Parliament and Council of the EU. (2024). <i>Regulation (EU) 2024/1689 (Artificial Intelligence Act).</i> Official Journal of the European Union.</li>
+    <li>IT and Business Process Association of the Philippines. (2026). <i>IT-BPM Roadmap and Talent Hub Initiatives: 2026 Skills Focused Agenda.</i> IBPAP. <a href="https://ibpap.org/talent-hub" target="_blank" rel="noopener">Link</a></li>
+    <li>International Labour Organization. (2026). <i>Generative AI and Youth Employment Prospects in the Philippines.</i> ILO Policy Brief.</li>
+    <li>Lee, H., et al. (2025). Unpacking cognitive offloading: How AI confidence shapes human critical thinking during task execution. <i>Proceedings of ACM CHI 2025.</i></li>
+    <li>Pearson, R., et al. (2026). Measuring cognitive engagement and automation bias in GenAI augmented knowledge work. <i>Scientific Reports, 16,</i> Article 34983.</li>
+    <li>Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning. <i>Psychological Science, 17</i>(3), 249–255.</li>
+  </ol>
+</section>
+
+<footer><div class="cast"><svg class="m fox" viewBox="0 0 130 150"><use href="#fox"/></svg><svg class="m owl" viewBox="0 0 100 110"><use href="#owl"/></svg></div>
+<p class="sc">Think first, verify after. Explain it, defend it, own it.</p><a class="btn" href="https://yvonneshaneacads-commits.github.io/AVE-update/" target="_blank" rel="noopener">Open the AVE tool</a></footer>
+
+<script>
+document.documentElement.classList.add('js');
+var P=[
+{n:"Opening Mentor",w:"fox",t:"Set the goal",d:"Define the problem, the real-world context, the scope and your time budget before anything else.",s:"Before we touch the AI, tell me: what are we solving, for whom, and how much time do we have?"},
+{n:"Tutor",w:"owl",t:"Reason first",d:"Socratic questioning. The AI withholds direct answers so you explain your own logic and assumptions first.",s:"Hoo, not so fast! I will not hand you the answer. What do you think, and why do you think it?"},
+{n:"Teacher",w:"fox",t:"Draft it",d:"Your raw reasoning is turned into a structured draft you can read, shape and own.",s:"Lovely thinking! Let me help arrange your ideas into a clear draft. The ideas stay yours."},
+{n:"Debater",w:"owl",t:"Push back",d:"The AI challenges your assumptions, logical fallacies and weak arguments to stress-test the draft.",s:"Let me poke at this! Is that assumption really true? What would a skeptic say?"},
+{n:"Researcher",w:"fox",t:"Verify everything",d:"Every claim, metric and source is checked against primary external references.",s:"Sniff sniff... I am checking every number and source. If I cannot verify it, it does not go in."},
+{n:"Closing Mentor",w:"owl",t:"Explain it back",d:"A mandatory Feynman-style defense: explain the work aloud, without looking at the screen, before you submit.",s:"Screens off! Explain it to me like I am new to the topic. If you can defend it, you own it."}];
+var tabs=document.getElementById('tabs'),who=document.getElementById('who'),line=document.getElementById('line'),ph=document.getElementById('ph'),say=document.getElementById('say');
+function show(i){var p=P[i];
+[].forEach.call(tabs.children,function(b,j){b.setAttribute('aria-selected',j==i)});
+who.setAttribute('class','m '+p.w);who.setAttribute('viewBox',p.w=='fox'?'0 0 130 150':'0 0 100 110');who.innerHTML='<use href="#'+p.w+'"/>';
+say.className='say'+(p.w=='owl'?' r':'');
+line.textContent=p.s;
+ph.innerHTML='<div class="tag sc">Phase '+(i+1)+' of 6</div><h3>'+p.n+': '+p.t+'</h3><p style="margin:.4em 0 0">'+p.d+'</p>';}
+P.forEach(function(p,i){var b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=(i+1)+'. '+p.n;b.onclick=function(){show(i)};tabs.appendChild(b)});
+show(0);
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+var sk=document.getElementById('sky');for(var k=0;k<70;k++){var s=document.createElement('i');s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;animation-delay:'+Math.random()*4+'s;width:'+(2+Math.random()*3)+'px;height:'+(2+Math.random()*3)+'px';sk.appendChild(s)}
+var AC,master,on=false,tm,step=0,mb=document.getElementById('mus'),CH=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]],PE=[69,72,74,76,79];
+function fq(m){return 440*Math.pow(2,(m-69)/12)}
+function note(m,t,d,pk,ty){var o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=fq(m);o.detune.value=(Math.random()-.5)*12;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(pk,t+(ty=='sine'&&d>6?d*.35:.03));g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.1)}
+function chord(){var t=AC.currentTime+.1,c=CH[step++%4];c.forEach(function(m){note(m,t,10,.05,'sine')});note(c[0]-12,t,10,.06,'sine');for(var i=0;i<3;i++)note(PE[Math.floor(Math.random()*5)]+(Math.random()<.3?12:0),t+1+i*2.4+Math.random(),5,.035,'sine')}
+function music(){if(!AC){AC=new (window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=0;var lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1500;var d=AC.createDelay(1);d.delayTime.value=.5;var fb=AC.createGain();fb.gain.value=.5;var lp2=AC.createBiquadFilter();lp2.type='lowpass';lp2.frequency.value=1100;master.connect(lp);lp.connect(AC.destination);lp.connect(d);d.connect(lp2);lp2.connect(fb);fb.connect(d);lp2.connect(AC.destination)}
+on=!on;if(on){AC.resume();master.gain.cancelScheduledValues(0);master.gain.linearRampToValueAtTime(.9,AC.currentTime+3);chord();tm=setInterval(chord,8000);mb.textContent='\u266a Music on'}else{clearInterval(tm);master.gain.linearRampToValueAtTime(0,AC.currentTime+1.5);mb.textContent='\u266a Play calm music'}}
+mb.addEventListener('pointerdown',function(e){e.stopPropagation()});mb.onclick=music;
+document.addEventListener('pointerdown',function(){if(!on)music()},{once:true});
+</script>
+</body>
+</html>
